@@ -11,7 +11,7 @@ import android_serialport_api.SerialPort;
 /**
  * 创 建 人: tangchao
  * 创建日期: 2017/4/21 15:46
- * 修改时间：
+ * 修改时间：testdsdf
  * 修改备注：
  */
 public class SerPortUtil {
