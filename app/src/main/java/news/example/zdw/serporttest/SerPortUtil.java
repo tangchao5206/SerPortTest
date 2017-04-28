@@ -153,7 +153,7 @@ public class SerPortUtil {
     }
 
 
-    //初始串口类2
+    ////初始串口类2
     private class TTT2 {
         //		public SerialPortFinder mSerialPort1Finder = new SerialPortFinder();
         private SerialPort mSerialPort2 = null;
