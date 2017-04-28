@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements MsgCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mEtData= (EditText) findViewById(R.id.et_data);
-        new SerPortUtil().setMsgCallback(this);
+        new SerPortUtil().setMsgCallback(this);//初始化串口辅助类
     }
 
     @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements MsgCallback {
 
     @Override
     public void OnReceive(String data) {
-        //接收的数据
+        //回调串口接收的数据
         mEtData.setText(data);
     }
 

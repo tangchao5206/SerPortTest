@@ -65,7 +65,7 @@ public class SerPortUtil {
         public SerialPort getSerialPort() throws SecurityException, IOException, InvalidParameterException {
             if (mSerialPort1 == null) {
 
-                String path = "/dev/ttyUSB0";  //028
+                String path = "/dev/ttyUSB0";  //你要打开的安卓串口名
                 int baudrate = 115200;//设置波特率
 
 				/* Open the serial port */
@@ -87,18 +87,19 @@ public class SerPortUtil {
     boolean open1() {
         boolean enable = true;
         try {
+
             mSerialPort1 =app1.getSerialPort();
-            mOutputStream1 = mSerialPort1.getOutputStream();
-            mInputStream1 = mSerialPort1.getInputStream();
-            LogUtils.showLogI("open");
+            if (mSerialPort1!=null) {
+                mOutputStream1 = mSerialPort1.getOutputStream();
+                mInputStream1 = mSerialPort1.getInputStream();
+                LogUtils.showLogI("open");
 			/* Create a receiving thread */
-            if (mInputStream1 != null) {
-                mReadThread1 = new ReadThread1();
-                mReadThread1.start();
-                sleep(100);
+                if (mInputStream1 != null) {
+                    mReadThread1 = new ReadThread1();
+                    mReadThread1.start();
+                    sleep(100);
+                }
             }
-
-
 
         } catch (SecurityException e) {
 
@@ -135,9 +136,8 @@ public class SerPortUtil {
                 try {
 
                     size = mInputStream1.read(buffer);
-                    final byte[] buf = new byte[size];
-                    // System.arraycopy(buffer, 0, buf, 0, size);
-
+                   /* final byte[] buf = new byte[size];
+                     System.arraycopy(buffer, 0, buf, 0, size);*/
                     for (int i = 0; i < size; i++) {
                         str = str + (String.format("%02X ",buffer[i] & 0xff)) + " ";
                     }
@@ -161,7 +161,7 @@ public class SerPortUtil {
         public SerialPort getSerialPort() throws SecurityException, IOException, InvalidParameterException {
             if (mSerialPort2 == null) {
 
-                String path = "/dev/ttyUSB2";  //028
+                String path = "/dev/ttyUSB2";  //你要打开的安卓串口名
                 int baudrate = 115200;//设置波特率
 
 				/* Open the serial port */
@@ -184,14 +184,16 @@ public class SerPortUtil {
         boolean enable = true;
         try {
             mSerialPort2 =app2.getSerialPort();
-            mOutputStream2 = mSerialPort2.getOutputStream();
-            mInputStream2 = mSerialPort2.getInputStream();
-            LogUtils.showLogI("open");
+            if (mSerialPort2!=null) {
+                mOutputStream2 = mSerialPort2.getOutputStream();
+                mInputStream2 = mSerialPort2.getInputStream();
+                LogUtils.showLogI("open");
 			/* Create a receiving thread */
-            if (mInputStream2 != null) {
-                mReadThread2 = new ReadThread2();
-                mReadThread2.start();
-                sleep(100);
+                if (mInputStream2 != null) {
+                    mReadThread2 = new ReadThread2();
+                    mReadThread2.start();
+                    sleep(100);
+                }
             }
 
         } catch (SecurityException e) {
@@ -223,8 +225,8 @@ public class SerPortUtil {
                 try {
                     sleep(1);
                     size = mInputStream2.read(buffer);
-                    final byte[] buf = new byte[size];
-                    // System.arraycopy(buffer, 0, buf, 0, size);
+                    /*final byte[] buf = new byte[size];
+                    System.arraycopy(buffer, 0, buf, 0, size);*/
 
                     // 数据
                     for (int i = 0; i < size; i++) {
